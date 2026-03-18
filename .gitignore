@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+venv/
+.venv/
+env/
+.env
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Output artifacts (generated at runtime)
+output/
+
+# API keys / secrets
+secrets.json
+*.key
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Node (if any tooling uses it)
+node_modules/
