@@ -1,7 +1,7 @@
 # Calendar Tool — Google Calendar MCP — Moon Studio
 
 > תיאום לוח ימי צילום דרך Google Calendar.
-> **סטטוס: 🔄 הבא לבנות — נדרש חיבור MCP ל-Claude**
+> **סטטוס: ✅ מחובר ופעיל — dvirgolanmusic@gmail.com | Asia/Jerusalem**
 
 ---
 
