@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "description": "תבנית לוח צילומים שבועי",
+    "managed_by": "Production Coordinator Agent",
+    "note": "להעתיק ולמלא לכל שבוע — שם קובץ: schedule_YYYY-WXX.json"
+  },
+  "week": "",
+  "shoots": []
+}

@@ -1,7 +1,20 @@
-# core
+# Core — Moon Studio
 
-Core system infrastructure and shared logic.
+> קבצי תשתית משותפים שכל הסוכנים מסתמכים עליהם.
 
-Contains base classes, configuration loaders, logging utilities, constants, and shared interfaces used across the entire system.
+---
 
-All agents, tools, and the brain layer depend on `core/` — it is the foundation of the project.
+## קבצים
+
+| קובץ | תוכן |
+|------|------|
+| `schemas.md` | כל ה-JSON schemas — Lead, Project, Quote, Invoice, Shoot, Content, Outreach |
+| `prompt_templates.md` | תבניות עברית לשימוש חוזר — דוחות, מיילים, follow-up, escalation |
+| `eval_runner.md` | לולאת ה-Eval לכל סוכן — שאלות בדיקה, מספר ניסיונות, פורמט דוח |
+
+---
+
+## כלל
+
+> לא לשנות קבצי core ללא commit מתועד עם `[core]` tag.
+> שינוי ב-schemas משפיע על **כל** הסוכנים — לעדכן את כולם בהתאם.

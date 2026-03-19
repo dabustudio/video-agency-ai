@@ -19,8 +19,17 @@ env/
 .env.local
 .env.*.local
 
-# Output artifacts (generated at runtime)
-output/
+# Output artifacts (generated at runtime) — PDFs, raw video, large files
+output/**/*.pdf
+output/**/*.mp4
+output/**/*.mov
+output/**/raw/
+# Track folder structure and starter JSON files
+!output/
+!output/**/.gitkeep
+!output/projects/leads.json
+!output/marketing/outreach_log/outreach_log.json
+!output/production/schedule_template.json
 
 # API keys / secrets
 secrets.json

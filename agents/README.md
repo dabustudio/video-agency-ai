@@ -1,7 +1,63 @@
-# agents
+# Agents — Moon Studio
 
-This folder contains the AI agents that make up the video agency system.
+> כל קובץ כאן מגדיר סוכן אחד. הסוכנים לא מחליטים לבד — הם מריצים ומעלים לדביר כשצריך.
 
-Each agent is a specialized unit responsible for a specific role in the video production pipeline — e.g., ScriptAgent, DirectorAgent, ReviewAgent.
+---
 
-Agents communicate with each other via the brain layer and use tools from the `tools/` directory to perform their tasks.
+## הסוכנים
+
+| סוכן | קובץ | אחריות |
+|------|------|--------|
+| **Orchestrator** | `orchestrator.md` | ה-brain — מנתב בין הסוכנים, מתאם, מעלה לדביר |
+| **Project Manager** | `project_manager.md` | לידים, פרויקטים פעילים, לוחות זמנים, דוח שבועי |
+| **Finance** | `finance.md` | הצעות מחיר, חשבוניות, מעקב תשלומים, תזרים |
+| **Marketing** | `marketing.md` | שיווק פרואקטיבי, cold outreach, תוכן, לידים |
+| **Content** | `content.md` | סקריפטים, בריפים, כתוביות, קריאטיב |
+| **Production Coord** | `production_coord.md` | לוחות צילום, ציוד, call sheet, תיאום |
+
+---
+
+## זרימת ניתוב
+
+```
+דביר / בקשה נכנסת
+        ↓
+  Orchestrator
+  (קורא brain/router.md)
+        ↓
+┌─────────────────────────────────────────────┐
+│  PM │ Finance │ Content │ Marketing │ Prod  │
+└─────────────────────────────────────────────┘
+        ↓
+   output/ ← כל תוצר נשמר כאן
+        ↓
+  דביר מאשר ← פעולות כספיות / שליחה החוצה
+```
+
+---
+
+## כללי Escalation משותפים
+
+כל סוכן מפסיק ושואל את דביר כשמתרחש אחד מאלה:
+- ליד חדש מסגמנט יעד (היי-טק, מסעדה, מותג, משרד פרסום)
+- הצעת מחיר מעל 15,000 ₪ לפני שליחה
+- הנחה מבוקשת מעל 10%
+- תשלום שלא הגיע ביותר מ-7 ימים
+- פרויקט שחורג מלוח הזמנים ב-48+ שעות
+- כל החלטה שמשפיעה על הכיוון האסטרטגי
+
+---
+
+## הוספת סוכן חדש
+
+ראה `docs/WORKING_INSTRUCTIONS.md` — סעיף 3.
+
+```
+# סדר הצ'קליסט:
+# 1. צור agents/[שם].md עם מבנה סטנדרטי
+# 2. הוסף לטבלה למעלה
+# 3. הוסף routing rule ב-brain/router.md
+# 4. הוסף תיקייה ב-output/ אם צריך
+# 5. עדכן CLAUDE.md אם יש כלל חדש
+# commit: [agent:new] add [שם] agent
+```
