@@ -34,6 +34,7 @@ output/**/raw/
 !output/growth/tech/.gitkeep
 !output/growth/business/.gitkeep
 !output/coo/.gitkeep
+!output/supervisor/.gitkeep
 
 # API keys / secrets
 secrets.json

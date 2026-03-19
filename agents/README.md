@@ -22,6 +22,7 @@
 | **COO** | `coo.md` | אופרציות, סקירה שבועית, הטמעת שינויים מאושרים |
 | **Tech Growth Manager** | `tech_growth_manager.md` | מעקב AI/Claude/MCP, דוח שבועי לדביר |
 | **Business Growth Manager** | `business_growth_manager.md` | מתחרים, מגמות שוק, הצעות עסקיות דו-שבועיות |
+| **Supervisor** | `supervisor.md` | דוח יומי — מה כל סוכן עשה, למה, יתרונות וחסרונות |
 
 ---
 

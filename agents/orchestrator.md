@@ -28,6 +28,7 @@
 | **COO** | `agents/coo.md` | אופרציות, שיפור מערכת, הטמעת שינויים מאושרים |
 | **Tech Growth Manager** | `agents/tech_growth_manager.md` | מעקב טכנולוגי, המלצות AI/MCP שבועיות לדביר |
 | **Business Growth Manager** | `agents/business_growth_manager.md` | מתחרים, מגמות שוק, הצעות עסקיות דו-שבועיות |
+| **Supervisor** | `agents/supervisor.md` | דוח יומי — מה כל סוכן עשה, למה, יתרונות וחסרונות |
 
 ---
 
