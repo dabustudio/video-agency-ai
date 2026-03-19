@@ -30,6 +30,10 @@ output/**/raw/
 !output/projects/leads.json
 !output/marketing/outreach_log/outreach_log.json
 !output/production/schedule_template.json
+!output/coo/improvement_log.json
+!output/growth/tech/.gitkeep
+!output/growth/business/.gitkeep
+!output/coo/.gitkeep
 
 # API keys / secrets
 secrets.json

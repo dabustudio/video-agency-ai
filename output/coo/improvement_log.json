@@ -1,0 +1,8 @@
+{
+  "meta": {
+    "description": "לוג שיפורים שבוצעו על ידי COO Agent",
+    "managed_by": "COO Agent",
+    "note": "כל שיפור מתועד כאן עם תאריך, מקור ו-commit"
+  },
+  "improvements": []
+}
