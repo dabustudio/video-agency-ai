@@ -16,8 +16,18 @@ from reportlab.pdfbase.ttfonts import TTFont
 # ── Fonts ──────────────────────────────────────────────────────────────────
 F      = 'DejaVu'
 FB     = 'DejaVu-Bold'
-pdfmetrics.registerFont(TTFont(F,  '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'))
-pdfmetrics.registerFont(TTFont(FB, '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf'))
+import platform
+def _font_path(linux_path, mac_fallback):
+    if platform.system() == 'Darwin':
+        return mac_fallback
+    return linux_path
+
+pdfmetrics.registerFont(TTFont(F,  _font_path(
+    '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
+    '/System/Library/Fonts/Supplemental/Arial Unicode.ttf')))
+pdfmetrics.registerFont(TTFont(FB, _font_path(
+    '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
+    '/System/Library/Fonts/Supplemental/Arial Bold.ttf')))
 
 # ── Font size hierarchy (4 fixed levels) ──────────────────────────────────
 S1 = 36   # Page title:  "הצעת מחיר"
@@ -30,7 +40,14 @@ ASSETS     = os.path.join(SCRIPT_DIR, '..', 'assets')
 LOGO       = os.path.join(ASSETS, 'logo_white.png')
 
 # ── FriBidi ────────────────────────────────────────────────────────────────
-_fribidi = ctypes.CDLL(ctypes.util.find_library('fribidi'))
+_lib = ctypes.util.find_library('fribidi')
+if not _lib:
+    # Homebrew on Apple Silicon
+    for _candidate in ['/opt/homebrew/lib/libfribidi.dylib', '/usr/local/lib/libfribidi.dylib']:
+        if os.path.exists(_candidate):
+            _lib = _candidate
+            break
+_fribidi = ctypes.CDLL(_lib)
 
 def visual(text):
     """Convert logical Unicode text → visual order using GNU FriBidi (RTL base)."""

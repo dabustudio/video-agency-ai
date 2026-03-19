@@ -2,8 +2,24 @@
   "meta": {
     "description": "רשימת כל הלידים של Moon Studio",
     "managed_by": "Project Manager Agent",
-    "last_updated": "",
+    "last_updated": "2026-03-19",
     "note": "לא למחוק רשומות — לשנות סטטוס בלבד"
   },
-  "leads": []
+  "leads": [
+    {
+      "lead_id": "2026-03-19-אור-אלקיים",
+      "name": "אור אלקיים",
+      "source": "פה לאוזן",
+      "segment": "פרטי",
+      "service_requested": "4 סרטי AI קצרים — דמויות, ליפסינק, דיבוב, ריקוד",
+      "budget_indicated": null,
+      "quote_sent": 5000,
+      "quote_total_with_vat": 5900,
+      "quote_file": "output/quotes/quote_or_elkayim_2026-03-19.pdf",
+      "date_entered": "2026-03-19",
+      "status": "הצעה נשלחה",
+      "priority": "רגילה",
+      "notes": "לקוחה בעייתית — לפקח על שינויים. שירות פרמיום AI. מחיר הופחת מ-10,500 ל-5,000 בהחלטת דביר."
+    }
+  ]
 }
