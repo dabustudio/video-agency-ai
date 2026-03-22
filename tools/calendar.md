@@ -1,79 +1,71 @@
 # Calendar Tool — Google Calendar MCP — Moon Studio
 
-> תיאום לוח ימי צילום דרך Google Calendar.
+> תיאום לוח ימי צילום ופגישות דרך Google Calendar.
 > **סטטוס: ✅ מחובר ופעיל — dvirgolanmusic@gmail.com | Asia/Jerusalem**
 
 ---
 
-## מה הכלי יעשה
+## מי משתמש בכלי זה
 
-- Production Coordinator Agent קורא ומעדכן את לוח הצילומים של דביר
-- יצירת אירועים אוטומטית עם call time, לוקיישן, פרטי לקוח
-- בדיקת זמינות לפני קביעת צילום חדש
-- תזכורות אוטומטיות לדביר
-
----
-
-## ⚙️ הגדרה — נדרש מדביר
-
-### שלב 1: הפעלת MCP ב-Claude Desktop
-
-הוסף ל-`~/Library/Application Support/Claude/claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "google-calendar": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-google-calendar"],
-      "env": {
-        "GOOGLE_CLIENT_ID": "[your-client-id]",
-        "GOOGLE_CLIENT_SECRET": "[your-client-secret]",
-        "GOOGLE_REFRESH_TOKEN": "[your-refresh-token]"
-      }
-    }
-  }
-}
-```
-
-### שלב 2: קבלת Google OAuth Credentials
-
-1. [console.cloud.google.com](https://console.cloud.google.com) → New Project
-2. Enable "Google Calendar API"
-3. Create OAuth 2.0 Client ID (Desktop App)
-4. הורד `client_secret.json`
-5. הרץ את flow ה-OAuth לקבלת `refresh_token`
+| סוכן | שימוש |
+|------|-------|
+| **Production Coord** | רישום ימי צילום ללקוחות, בדיקת זמינות |
+| **Marketing** | תזמון ימי צילום פנימיים לתוכן הסטודיו |
 
 ---
 
-## פעולות שה-MCP מאפשר
+## פעולות MCP
 
-| פעולה | תיאור |
-|-------|-------|
-| `list_events` | שליפת אירועים לפי טווח תאריכים |
-| `create_event` | יצירת אירוע חדש (יום צילום) |
-| `update_event` | עדכון אירוע קיים |
-| `check_availability` | בדיקת זמינות לתאריך מסוים |
+| פעולה | כלי MCP | תיאור |
+|-------|---------|-------|
+| רשימת אירועים | `mcp__claude_ai_Google_Calendar__gcal_list_events` | שליפת אירועים לפי טווח |
+| יצירת אירוע | `mcp__claude_ai_Google_Calendar__gcal_create_event` | יצירת יום צילום / פגישה |
+| עדכון אירוע | `mcp__claude_ai_Google_Calendar__gcal_update_event` | עדכון פרטים |
+| מציאת זמן פנוי | `mcp__claude_ai_Google_Calendar__gcal_find_my_free_time` | בדיקת זמינות |
 
 ---
 
-## שימוש Production Coordinator
+## שימוש Production Coord — יום צילום ללקוח
 
 ```
-בדיקת זמינות לפני קביעת צילום:
-1. שלוף אירועים לשבוע המבוקש
-2. אם התאריך פנוי → צור אירוע עם הפרטים
-3. כלול: שם לקוח, לוקיישן, call time, סוג צילום
+1. בדוק זמינות בתאריך המבוקש (gcal_find_my_free_time)
+2. אם פנוי → צור אירוע:
+   כותרת: "🎬 צילום — [שם לקוח] — [סוג]"
+   תיאור: לוקיישן + call time + פרטי פרויקט
+   משך: יום מלא / חצי יום
+3. שמור shoot_id ב-output/production/schedule.json
+```
 
-שם אירוע מומלץ: "[סוג] — [שם לקוח] — [HH:MM]"
+### פורמט אירוע מומלץ
+```
+כותרת: 🎬 [שם לקוח] — [יום מלא / חצי יום]
+תיאור:
+  לוקיישן: [כתובת]
+  Call time: [HH:MM]
+  סוג: [פרסומת / תדמית / סושיאל]
+  Supabase project ID: [ID]
+```
+
+---
+
+## שימוש Marketing — יום צילום פנימי
+
+```
+1. דביר אישר רעיון + סקריפט → Marketing מתזמן יום צילום
+2. בדוק זמינות (gcal_find_my_free_time)
+3. צור אירוע:
+   כותרת: "📹 צילום פנימי — [שם הסרטון]"
+   תיאור: סקריפט: output/marketing/scripts/...
+   משך: [לפי הסקריפט — בדרך כלל 2-4 שעות]
+4. עדכן status ב-output/marketing/ideas/ ל-"מתוזמן"
 ```
 
 ---
 
 ## לוח זמנים קבוע
 
-| יום | משימה |
+| מתי | פעולה |
 |-----|-------|
-| ראשון | בדיקת לוח השבוע הקרוב |
-| כל יום | תזכורת לדביר אם יש צילום למחרת |
-| 3 ימים לפני | בדיקת ציוד מיוחד |
+| כל ראשון | Production Coord בודק לוח השבוע הקרוב |
+| 3 ימים לפני צילום | בדיקת ציוד מיוחד |
+| יום לפני צילום | תזכורת לדביר + call sheet ללקוח |
